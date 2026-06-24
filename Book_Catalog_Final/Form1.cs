@@ -16,5 +16,15 @@ namespace Book_Catalog_Final
         {
             InitializeComponent();
         }
+
+        private void lstBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
