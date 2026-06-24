@@ -1,0 +1,14 @@
+# Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.pdb
+*.exe
+*.dll
+# Пользовательские настройки
+appsettings.Development.json
+# ReSharper
+_ReSharper*/
