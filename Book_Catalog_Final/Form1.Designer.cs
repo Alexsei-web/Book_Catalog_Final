@@ -33,6 +33,7 @@
             this.lstBooks = new System.Windows.Forms.ListBox();
             this.picCover = new System.Windows.Forms.PictureBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCover)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             // 
             this.btnSearch.Location = new System.Drawing.Point(262, 10);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(148, 22);
+            this.btnSearch.Size = new System.Drawing.Size(144, 22);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Искать";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -59,15 +60,15 @@
             this.lstBooks.FormattingEnabled = true;
             this.lstBooks.Location = new System.Drawing.Point(12, 38);
             this.lstBooks.Name = "lstBooks";
-            this.lstBooks.Size = new System.Drawing.Size(204, 264);
+            this.lstBooks.Size = new System.Drawing.Size(260, 264);
             this.lstBooks.TabIndex = 2;
             this.lstBooks.SelectedIndexChanged += new System.EventHandler(this.lstBooks_SelectedIndexChanged);
             // 
             // picCover
             // 
-            this.picCover.Location = new System.Drawing.Point(222, 38);
+            this.picCover.Location = new System.Drawing.Point(278, 38);
             this.picCover.Name = "picCover";
-            this.picCover.Size = new System.Drawing.Size(188, 264);
+            this.picCover.Size = new System.Drawing.Size(265, 264);
             this.picCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picCover.TabIndex = 3;
             this.picCover.TabStop = false;
@@ -76,17 +77,28 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblStatus.Location = new System.Drawing.Point(0, 437);
+            this.lblStatus.Location = new System.Drawing.Point(0, 302);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(36, 13);
             this.lblStatus.TabIndex = 4;
             this.lblStatus.Text = "Готов";
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(412, 9);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(131, 23);
+            this.btnClear.TabIndex = 5;
+            this.btnClear.Text = "Очистить";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(555, 315);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.picCover);
             this.Controls.Add(this.lstBooks);
@@ -107,6 +119,7 @@
         private System.Windows.Forms.ListBox lstBooks;
         private System.Windows.Forms.PictureBox picCover;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

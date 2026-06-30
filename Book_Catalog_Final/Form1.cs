@@ -151,6 +151,13 @@ namespace Book_Catalog_Final
             }
         }
 
-
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            lstBooks.Items.Clear();
+            picCover.Image = null;
+            txtSearch.Text = "";
+            lblStatus.Text = "Готово. Список очищен.";
+        }
     }
 }
+// Комментарий о том, что я закончил написание моего REST API проекта.
