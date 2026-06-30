@@ -17,6 +17,7 @@ namespace Book_Catalog_Final
         public Form1()
         {
             InitializeComponent();
+            this.txtSearch.KeyPress += (s, e) => { if (e.KeyChar == (char)Keys.Enter) btnSearch.PerformClick(); };
         }
 
         private void lstBooks_SelectedIndexChanged(object sender, EventArgs e)
