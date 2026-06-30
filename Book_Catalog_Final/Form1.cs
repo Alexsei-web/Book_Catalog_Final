@@ -176,6 +176,7 @@ namespace Book_Catalog_Final
             picCover.Image = null;
             txtSearch.Text = "";
             lblStatus.Text = "Готово. Список очищен.";
+            MessageBox.Show("Все результаты успешно очищены.", "Очистка выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
