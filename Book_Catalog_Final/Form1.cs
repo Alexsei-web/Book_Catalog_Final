@@ -43,6 +43,8 @@ namespace Book_Catalog_Final
             using (HttpClient httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Add("User-Agent", "MyBookApp (aleksei.ilin.07@mail.ru)");
+                httpClient.Timeout = TimeSpan.FromSeconds(10); // Таймаут на загрузку обложки
+
                 try
                 {
                     byte[] imageData = httpClient.GetByteArrayAsync(coverUrl).Result;
@@ -56,11 +58,19 @@ namespace Book_Catalog_Final
                 }
                 catch (HttpRequestException)
                 {
+                    MessageBox.Show("Не удалось загрузить обложку.\nВозможно, для этой книги обложка отсутствует, или сервер временно недоступен.", "Обложка не найдена", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblStatus.Text = "Обложка не найдена";
+                    picCover.Image = null;
+                }
+                catch (TaskCanceledException)
+                {
+                    MessageBox.Show("Загрузка обложки заняла слишком много времени.\nПроверьте интернет-соединение.", "Таймаут загрузки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    lblStatus.Text = "Таймаут загрузки обложки";
                     picCover.Image = null;
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show($"Ошибка при загрузке обложки:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblStatus.Text = $"Ошибка загрузки обложки: {ex.Message}";
                     picCover.Image = null;
                 }
@@ -73,7 +83,7 @@ namespace Book_Catalog_Final
 
             if (string.IsNullOrEmpty(query))
             {
-                MessageBox.Show("Введите название книги", "Подсказка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Пожалуйста, введите название книги для поиска.", "Пустой запрос", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -88,6 +98,7 @@ namespace Book_Catalog_Final
             using (HttpClient httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Add("User-Agent", "MyBookApp (aleksei.ilin.07@mail.ru)");
+                httpClient.Timeout = TimeSpan.FromSeconds(10); // Таймаут на запрос
 
                 try
                 {
@@ -145,9 +156,16 @@ namespace Book_Catalog_Final
                 {
                     lblStatus.Text = $"Ошибка сети: {httpEx.Message}";
                 }
+                catch (TaskCanceledException) // Возникает при таймауте
+                {
+                    MessageBox.Show("Сервер Open Library не отвечает слишком долго.\nПопробуйте повторить запрос позже или проверьте своё интернет-соединение.", "Таймаут запроса", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    lblStatus.Text = "Таймаут запроса.";
+                }
                 catch (Exception ex)
                 {
-                    lblStatus.Text = $"Неизвестная ошибка: {ex.Message}";
+                    // Любая другая ошибка (парсинг JSON и т.д.)
+                    MessageBox.Show($"Произошла непредвиденная ошибка:\n{ex.Message}", "Критическая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblStatus.Text = "Неизвестная ошибка.";
                 }
             }
         }
